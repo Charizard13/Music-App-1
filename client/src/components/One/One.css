@@ -1,0 +1,32 @@
+.one{
+display: flex;
+flex-direction: column;
+background-color: black;
+justify-content: center;
+justify-items: center;
+margin-top: 3.4%;
+}
+.one-title{
+  display: flex;
+  flex: 1fr;
+  color: rgb(220,53,69);
+  font-size: 24px;
+  justify-content: center;
+  justify-items: center;
+  background-color: black;
+}
+
+.img {
+  display: flex;
+  flex: 3fr;
+  min-width: 200px;
+  background-color: black;
+}
+
+.bar{
+  display: flex;
+  flex-direction: column;
+  flex: 4fr;
+}
+
+

@@ -1,0 +1,55 @@
+
+.homePage {
+    display: grid;
+    position: relative;
+    min-height: 200vh;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+      "navBar"
+      "artists"
+      "albums"
+      "playLists"
+      "songs";
+      background-color: black;
+      row-gap: 3%;
+      text-align: center;
+      background-attachment: fixed;
+      background-size: cover;
+  }
+
+  
+.navBar {
+    grid-area: navBar;
+  }
+  .artists {
+    grid-area: artists;
+    margin-top: 5%;
+  }
+  .albums {
+    grid-area: albums;
+  
+  }
+  .playlists {
+    grid-area: playLists;
+    background-color: black;
+
+  }
+  .songs {
+    grid-area: songs;
+    background-color: black;
+
+  }
+
+.text {
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+}
+
+.title{
+  font-size: 24px;
+  color:rgb(220, 53, 69);
+  font-weight: bold;
+}
+
+  

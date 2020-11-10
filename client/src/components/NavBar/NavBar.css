@@ -1,0 +1,17 @@
+.NavBar {
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+background-color: "black" 
+}
+
+.home{
+    color: "  rgb(220, 53, 69)";
+    font-size: "26px";
+    width: "1vw";
+}
+.text{
+    display: flex;
+    top: 0px;
+    color: white;
+}

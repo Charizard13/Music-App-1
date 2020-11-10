@@ -1,0 +1,13 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: flex-start;
+  width: 100%;
+}
+
+
+.bar {
+  width: 100%;
+
+}

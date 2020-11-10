@@ -1,0 +1,28 @@
+.songBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.left{
+display: flex;
+flex: 1;
+justify-content: center;
+}
+
+.center{
+  display: flex;
+  flex: 4;
+  justify-content: center;
+  justify-items: center;
+  color: white; 
+
+}
+
+.right{
+  display: flex;
+  flex: 5;
+  justify-content: center;
+  justify-items: self-start;
+  color: white; 
+
+}

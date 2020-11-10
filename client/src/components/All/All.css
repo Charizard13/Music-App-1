@@ -1,0 +1,5 @@
+.All {
+      background-color: black;
+      display: grid;
+      grid-template-columns: 20%;
+}
