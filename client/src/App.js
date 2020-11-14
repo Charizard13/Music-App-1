@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import Home from "./components/Home/Home";
+import ElasticHome from "./components/Elastic/ElasticHome";
+import AllElastic from "./components/Elastic/AllElastic";
 import All from "./components/All/All";
 import One from "./components/One/One";
 import OneSong from "./components/Song/OneSong";
@@ -29,6 +31,14 @@ function App() {
           <Route  path="/artists" component={All}  />
           <Route  path="/albums" component={All} />
           <Route  path="/songs" component={All} />
+          <Route  path="/elastic/albums" component={AllElastic} />
+          <Route  path="/elastic/playlists" component={AllElastic} />
+          <Route  path="/elastic/artists" component={AllElastic} />
+          <Route  path="/elastic/songs" component={AllElastic} />
+          <Route  path="/elastic" component={ElasticHome} />
+          
+
+
           <Route path="/404" component={NotFound} />
           <Redirect from="*" to="/404" />
         </Switch>

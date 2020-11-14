@@ -1,0 +1,8 @@
+DELETE     http://localhost:8080/api/playlists/
+Content-Type: application/json 
+  
+{
+     "name": "Test2",
+     "youtube_link" : "test2",
+     "id": 3
+ }

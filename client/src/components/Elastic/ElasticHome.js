@@ -1,13 +1,13 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useRef } from "react";
 import Card from "../Card/Card";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
-import AddForm from "./AddForm.js";
+import AddForm from "../Home/AddForm.js";
 import { BiAddToQueue } from "react-icons/bi";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Home.css";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../Home/Home.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Carousel = React.lazy(() => import("react-elastic-carousel"));
 
@@ -27,39 +27,68 @@ function HomePage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [current, setCurrent] = useState('');
+  const searchInput = useRef('')
 
+  
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/artists/top_artists");
-      setArtistList(data);
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("/songs/top_songs");
-      setSongList(data);
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("/albums/top_albums");
-      setAlbumList(data);
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("playlists/top_playlists");
+      const { data } = await axios.get(`elastic/playlists/:${searchInput.current}`)
       setPlaylistList(data);
     })();
-  }, []);
+    (async () => {
+      const { data } = await axios.get(`elastic/albums/:${searchInput.current}`)
+      setAlbumList(data);
+      console.log(data)
+    })();
+    (async () => {
+      const { data } = await axios.get(`elastic/songs/:${searchInput.current}`)
+      setSongList(data);
+      console.log(data)
+    })();
+    (async () => {
+      const { data } = await axios.get(`elastic/artists/:${searchInput.current}`)
+       setArtistList(data);
+    })();
+  }, [current]);
+
+ 
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("elastic/top_3_artists");
+      console.log(data);
+      setArtistList(data);
+    })();
+    (async () => {
+      const { data } = await axios.get("elastic/top_3_songs");
+      setSongList(data);
+    })();
+    (async () => {
+      const { data } = await axios.get("elastic/top_3_albums");
+      setAlbumList(data);
+    })();
+    (async () => {
+      const { data } = await axios.get("elastic/top_3_playlists");
+      setPlaylistList(data);
+    })();
+  }, [] || current === '');
+
+
+  useEffect(() => {
+    searchInput.current = current
+  }, [current])
+
 
   return (
     <div className="homePage">
       <NavBar className="navBar" />
       <div className="artists">
-        <Link to="/artists">
+      <input placeholder="Search" ref={searchInput} value={current} onChange={e => setCurrent(e.target.value)}></input>
+
+        <Link to="elastic/artists">
           <div className="title">
-            <div>Top Artists</div>
+            <div>Top 3 Artists</div>
+            <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
           </div>
         </Link>
         <Button
@@ -97,8 +126,9 @@ function HomePage() {
       </div>
       <div className="albums">
         {" "}
-        <Link to="/albums">
-          <div className="title">Top Albums</div>
+        <Link to="elastic/albums">
+          <div className="title">Top 3 Albums</div>
+          <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
         </Link>
         <Suspense
           fallback={
@@ -120,8 +150,9 @@ function HomePage() {
       </div>
       <div className="playlists">
         {" "}
-        <Link to="/playlists">
-          <div className="title">Top Playlists</div>
+        <Link to="elastic/playlists">
+          <div className="title">Top 3 Playlists</div>
+          <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
         </Link>
         <Suspense
           fallback={
@@ -142,9 +173,10 @@ function HomePage() {
         </Suspense>
       </div>
       <div className="songs">
-        <Link to="/songs">
+        <Link to="elastic/songs">
           <div className="title">
-            <div>Top Songs</div>
+            <div>Top  3 Songs</div>
+            <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
           </div>
         </Link>
         <Suspense

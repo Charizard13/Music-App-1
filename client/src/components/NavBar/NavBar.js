@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "./logo.jpg";
+import elastic from "./elasticSearch.jpg"
 import { Navbar, Form, FormControl, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
@@ -54,6 +55,16 @@ function NavBar() {
         {" "}
         <Nav>
           <img height="40" width="50" alt="" src={logo} />
+        </Nav>
+      </Link>
+      <Link
+        to="/elastic"
+        className="text d-flex"
+        style={{ fontSize: "24px", flex: "2", justifyContent: "center" }}
+      >
+        {" "}
+        <Nav>
+          <img height="40" width="50" alt="" src={elastic} />
         </Nav>
       </Link>
       </div>
