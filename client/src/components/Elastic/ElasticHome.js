@@ -71,7 +71,7 @@ function HomePage() {
       const { data } = await axios.get("elastic/top_3_playlists");
       setPlaylistList(data);
     })();
-  }, [] || current === '');
+  }, [],  current === '');
 
 
   useEffect(() => {

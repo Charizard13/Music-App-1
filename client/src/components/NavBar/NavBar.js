@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "./logo.jpg";
 import elastic from "./elasticSearch.jpg"
+import firebase from "./firebase.png"
 import { Navbar, Form, FormControl, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
@@ -19,7 +20,6 @@ import UpdateProfile from "../Login/UpdateProfile";
 function NavBar() {
   const [showRegister, setShowRegister] = useState(false);
   const [input, setInput] = useState([]);
-  const [foundAlbum, setFoundAlbums] = useState([]);
 
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
@@ -65,6 +65,16 @@ function NavBar() {
         {" "}
         <Nav>
           <img height="40" width="50" alt="" src={elastic} />
+        </Nav>
+      </Link>
+      <Link
+        to="/firebase"
+        className="text d-flex"
+        style={{ fontSize: "24px", flex: "2", justifyContent: "center" }}
+      >
+        {" "}
+        <Nav>
+          <img height="40" width="50" alt="" src={firebase} />
         </Nav>
       </Link>
       </div>

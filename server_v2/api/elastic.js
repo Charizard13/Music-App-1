@@ -24,7 +24,7 @@ router.get("/all/:name", async (req, res) => {
     index: ["playlist","artists", "songs", "albums"],
     body: {
       query: {
-        wildcard: { name: `${search}*` },
+        wildcard: { name: `*${search}*` },
       },
     },
   });

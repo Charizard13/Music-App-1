@@ -60,6 +60,7 @@ router.post("/", async (req, res) => {
   try {
     await client.index({
       index: "playlist",
+      id: req.body.id,
       body: req.body,
     });
     res.send(`playlist  ${req.body.name} added successfully`);
@@ -80,7 +81,6 @@ router.delete("/:playlistId", async (req, res) => {
   try {
     await client.delete({
       index: "playlist",
-      id: req.params.playlistId,
       body: {
         query: {
           match: { id: req.params.playlistId },
