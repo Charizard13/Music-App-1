@@ -27,32 +27,36 @@ function HomePage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [current, setCurrent] = useState('');
-  const searchInput = useRef('')
+  const [current, setCurrent] = useState("");
+  const searchInput = useRef("");
 
-  
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`elastic/playlists/:${searchInput.current}`)
+      const { data } = await axios.get(
+        `elastic/playlists/:${searchInput.current}`
+      );
       setPlaylistList(data);
     })();
     (async () => {
-      const { data } = await axios.get(`elastic/albums/:${searchInput.current}`)
+      const { data } = await axios.get(
+        `elastic/albums/:${searchInput.current}`
+      );
       setAlbumList(data);
-      console.log(data)
+      console.log(data);
     })();
     (async () => {
-      const { data } = await axios.get(`elastic/songs/:${searchInput.current}`)
+      const { data } = await axios.get(`elastic/songs/:${searchInput.current}`);
       setSongList(data);
-      console.log(data)
+      console.log(data);
     })();
     (async () => {
-      const { data } = await axios.get(`elastic/artists/:${searchInput.current}`)
-       setArtistList(data);
+      const { data } = await axios.get(
+        `elastic/artists/:${searchInput.current}`
+      );
+      setArtistList(data);
     })();
   }, [current]);
 
- 
   useEffect(() => {
     (async () => {
       const { data } = await axios.get("elastic/top_3_artists");
@@ -71,24 +75,27 @@ function HomePage() {
       const { data } = await axios.get("elastic/top_3_playlists");
       setPlaylistList(data);
     })();
-  }, [],  current === '');
-
+  }, [current]);
 
   useEffect(() => {
-    searchInput.current = current
-  }, [current])
-
+    searchInput.current = current;
+  }, [current]);
 
   return (
     <div className="homePage">
       <NavBar className="navBar" />
       <div className="artists">
-      <input placeholder="Search" ref={searchInput} value={current} onChange={e => setCurrent(e.target.value)}></input>
+        <input
+          placeholder="Search"
+          ref={searchInput}
+          value={current}
+          onChange={(e) => setCurrent(e.target.value)}
+        ></input>
 
         <Link to="elastic/artists">
           <div className="title">
             <div>Top 3 Artists</div>
-            <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
+            <div style={{ fontSize: "15px", color: "grey" }}>Show more</div>
           </div>
         </Link>
         <Button
@@ -128,7 +135,7 @@ function HomePage() {
         {" "}
         <Link to="elastic/albums">
           <div className="title">Top 3 Albums</div>
-          <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
+          <div style={{ fontSize: "15px", color: "grey" }}>Show more</div>
         </Link>
         <Suspense
           fallback={
@@ -152,7 +159,7 @@ function HomePage() {
         {" "}
         <Link to="elastic/playlists">
           <div className="title">Top 3 Playlists</div>
-          <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
+          <div style={{ fontSize: "15px", color: "grey" }}>Show more</div>
         </Link>
         <Suspense
           fallback={
@@ -175,8 +182,8 @@ function HomePage() {
       <div className="songs">
         <Link to="elastic/songs">
           <div className="title">
-            <div>Top  3 Songs</div>
-            <div style={{fontSize: "15px", color: "grey"}}>Show more</div>
+            <div>Top 3 Songs</div>
+            <div style={{ fontSize: "15px", color: "grey" }}>Show more</div>
           </div>
         </Link>
         <Suspense

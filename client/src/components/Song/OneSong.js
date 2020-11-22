@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./OneSong.css";
 import SongBar from "./SongBar";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function App({ match }) {
   function useQuery() {
@@ -28,51 +28,48 @@ function App({ match }) {
 
   const [song, setSong] = useState([]);
   const [relatedSongs, setRelatedSongs] = useState([]);
-  const[link, setLink] = useState([])
-  
+  // const [link, setLink] = useState([]);
+
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`/songs/${match.params.id}`);
       setSong(data);
     })();
-  }, []);
+  }, [match.params.id]);
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`/songs/${queryKey}_related/${queryValue}`);
-      console.log(queryKey)
-      console.log(queryValue)
-      console.log(data)
+      const { data } = await axios.get(
+        `/songs/${queryKey}_related/${queryValue}`
+      );
       setRelatedSongs(data);
     })();
-  }, []);
+  }, [queryValue, queryKey]);
 
-
-
-  
   return (
-    <body>
+    <div>
       <div className="navbar"></div>
       <div>
         <div className="combine">
           <div className="image">
             <div style={{ color: "white" }}>{song && song.name}</div>
             <iframe
-                src={"https://www.youtube.com/embed/LDMTjY-QgD0"}
-                style={{ width: "50vw", height: "90vh", frameBorder: "0" }}
-                allow="accelerometer; autoplay ; encrypted-media"
-                title=""
-                allowFullScreen
-              />
+              src={"https://www.youtube.com/embed/LDMTjY-QgD0"}
+              style={{ width: "50vw", height: "90vh", frameBorder: "0" }}
+              allow="accelerometer; autoplay ; encrypted-media"
+              title="title"
+              allowFullScreen
+            />
           </div>
           <div className="rest">
             <h1 style={{ color: "white" }}>{` same ${queryKey} songs`}</h1>
             <div>
               {
                 <div className="bar">
-                  {relatedSongs && relatedSongs.map((song) => {
-                    return <SongBar key={song.id} song={song} />;
-                  })}
+                  {relatedSongs &&
+                    relatedSongs.map((song) => {
+                      return <SongBar key={song.id} song={song} />;
+                    })}
                 </div>
               }
             </div>
@@ -80,7 +77,7 @@ function App({ match }) {
         </div>
         <footer className="footer">footer</footer>
       </div>
-    </body>
+    </div>
   );
 }
 

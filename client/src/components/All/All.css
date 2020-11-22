@@ -1,5 +1,16 @@
-.All {
+body {
       background-color: black;
-      display: grid;
-      grid-template-columns: 20%;
+
+}
+
+.all {
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 4vw;
+}
+
+.one {
+      margin: 4vw;
 }

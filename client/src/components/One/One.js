@@ -8,9 +8,8 @@ import PlaylistSongBar from "./PlaylistSongBar";
 function One({ match }) {
   const from = match;
   const link = match.url;
-  const type = link.replaceAll('/','',link)
-  const queryKey =
-  type.includes("artist")
+  const type = link.replaceAll("/", "", link);
+  const queryKey = type.includes("artist")
     ? `artist`
     : type.includes("album")
     ? `album`
@@ -23,58 +22,65 @@ function One({ match }) {
       const { data } = await axios.get(`${link}`);
       setList(data);
     })();
-  }, []);
+  }, [link]);
 
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`${link}/songs`);
       setSongs(data);
     })();
-  }, []);
+  }, [link]);
 
   return (
     <div className="one">
+      <div className="one-title">{list && list.name}</div>
       <div className="one-title">
-        {list && list.name}
+        <img
+          src={`https://img.youtube.com/vi/qojvO0E0z_Y/hqdefault.jpg`}
+          alt=""
+          className="img"
+        />
       </div>
-      <div className="one-title">  
-      <img
-        src={`https://img.youtube.com/vi/qojvO0E0z_Y/hqdefault.jpg`}
-        alt=""
-        className="img"
-      /></div>
-    
-      <div >
+
+      <div>
         <div className="one-title">Songs</div>
         <div className="bar">
           {songs.map((prop) => {
-            if(queryKey === 'album')
-            return (
-             <div><AlbumSongBar
-             from={from}
-             key={prop.id}
-             prop={prop}
-             className="bar"
-           /></div> 
-            );
-            if(queryKey === 'artist')
-            return (
-              <div><ArtistSongBar
-              from={from}
-              key={prop.id}
-              prop={prop}
-              className="bar"
-            /></div>
-            );
-            if(queryKey === 'playlist')
-            return (
-              <div><PlaylistSongBar
-              from={from}
-              key={prop.id}
-              prop={prop}
-              className="bar"
-            /></div>
-            );
+            if (queryKey === "album") {
+              return (
+                <div>
+                  <AlbumSongBar
+                    from={from}
+                    key={prop.id}
+                    prop={prop}
+                    className="bar"
+                  />
+                </div>
+              );
+            }
+
+            if (queryKey === "artist")
+              return (
+                <div>
+                  <ArtistSongBar
+                    from={from}
+                    key={prop.id}
+                    prop={prop}
+                    className="bar"
+                  />
+                </div>
+              );
+            if (queryKey === "playlist")
+              return (
+                <div>
+                  <PlaylistSongBar
+                    from={from}
+                    key={prop.id}
+                    prop={prop}
+                    className="bar"
+                  />
+                </div>
+              );
           })}
         </div>
       </div>

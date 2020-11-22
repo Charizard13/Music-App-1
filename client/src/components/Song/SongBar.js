@@ -10,8 +10,6 @@ function SongCard({ song }) {
   const link = song.youtube_link
     .replace("watch?v=", "embed/")
     .split("&list")[0];
-  console.log(song);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -39,13 +37,13 @@ function SongCard({ song }) {
             </div>
           </Modal>
         </div>
-        <Link style={{ color: "white" }} to="/artists/${artist[0].artist_id}">
+        <Link style={{ color: "white" }} to={`/artists/${song.artistId}`}>
           <span>{song.Artist.name}</span>
         </Link>
-        <Link style={{ color: "white" }} to="/artists/${artist[0].artist_id}">
-          <span>{song.Album.name}</span>
+        <Link style={{ color: "white" }} to={`/artists/${song.albumId}`}>
+          <span>song album name</span>
         </Link>
-        <Link style={{ color: "white" }} to="/songs/${song[0].artist_id}">
+        <Link style={{ color: "white" }} to={`/songs/${song.artistId}`}>
           <Nav>{song.name}</Nav>
         </Link>
       </Navbar>

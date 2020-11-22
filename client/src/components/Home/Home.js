@@ -85,10 +85,10 @@ function HomePage() {
         >
           {" "}
           <Carousel style={{ height: "250px" }} breakPoints={breakPoints}>
-            {artistList.map((prop) => {
+            {artistList.map((one) => {
               return (
-                <Link to={`/artists/${prop.id}`}>
-                  <Card key={prop.id} prop={prop} name={"artist"} />
+                <Link to={`/artists/${one.id}`}>
+                  <Card key={one.id} one={one} type={"artist"} />
                 </Link>
               );
             })}
@@ -108,10 +108,10 @@ function HomePage() {
           }
         >
           <Carousel breakPoints={breakPoints}>
-            {albumList.map((prop) => {
+            {albumList.map((one) => {
               return (
-                <Link to={`/albums/${prop.id}`}>
-                  <Card key={prop.id} prop={prop} name={"album"} />
+                <Link to={`/albums/${one.id}`}>
+                  <Card key={one.id} one={one} name={"album"} />
                 </Link>
               );
             })}
@@ -131,10 +131,10 @@ function HomePage() {
           }
         >
           <Carousel breakPoints={breakPoints}>
-            {playlistList.map((prop) => {
+            {playlistList.map((one) => {
               return (
-                <Link to={`/playlists/${prop.id}`}>
-                  <Card key={prop.id} prop={prop} name={"playlist"} />
+                <Link to={`/playlists/${one.id}`}>
+                  <Card key={one.id} one={one} name={"playlist"} />
                 </Link>
               );
             })}
@@ -155,10 +155,10 @@ function HomePage() {
           }
         >
           <Carousel breakPoints={breakPoints}>
-            {songList.map((prop) => {
+            {songList.map((one) => {
               return (
-                <Link to={`/songs/${prop.id}`}>
-                  <Card key={prop.id} prop={prop} />
+                <Link to={`/songs/${one.id}`}>
+                  <Card key={one.id} one={one} />
                 </Link>
               );
             })}
