@@ -16,7 +16,7 @@ function All({ match }) {
   }, [url]);
 
   return (
-    <div className="all">
+    <section className="all">
       {list.map((one, index) => {
         return (
           <div key={index}>
@@ -26,7 +26,7 @@ function All({ match }) {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 }
 

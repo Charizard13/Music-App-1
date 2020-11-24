@@ -11,10 +11,10 @@ function Card({ one }) {
         src={`https://img.youtube.com/vi/${coverLink}/hqdefault.jpg`}
         alt=""
       />
-      <p id="one-title">
+      <h4 id="one-title">
         {one.name.length > 20 ? one.name.slice(0, 20) + "..." : one.name}{" "}
-      </p>
-      <p id="one-type">type</p>
+      </h4>
+      <h2 id="one-type">type</h2>
     </div>
   );
 }

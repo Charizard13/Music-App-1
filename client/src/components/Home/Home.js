@@ -54,13 +54,11 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="homePage">
+    <article className="homePage">
       <NavBar className="navBar" />
       <div className="artists">
         <Link to="/artists">
-          <div className="title">
-            <div>Top Artists</div>
-          </div>
+          <nav className="title">Top Artists</nav>
         </Link>
         <Button
           className="title"
@@ -165,7 +163,7 @@ function HomePage() {
           </Carousel>
         </Suspense>
       </div>
-    </div>
+    </article>
   );
 }
 
